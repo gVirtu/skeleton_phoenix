@@ -13,7 +13,7 @@ defmodule Skeleton.Phoenix.ControllerTest do
     test "when isn't authenticated", context do
       conn = UserController.update(context.conn)
       assert conn.halted
-      assert conn.status == 403
+      assert conn.status == 401
     end
 
     test "when is authenticated", context do
@@ -47,7 +47,7 @@ defmodule Skeleton.Phoenix.ControllerTest do
         |> UserController.unauthenticated_update()
 
       assert conn.halted
-      assert conn.status == 403
+      assert conn.status == 401
     end
   end
 
@@ -75,7 +75,7 @@ defmodule Skeleton.Phoenix.ControllerTest do
         |> UserController.update()
 
       assert conn.halted
-      assert conn.status == 401
+      assert conn.status == 403
     end
   end
 
@@ -139,7 +139,7 @@ defmodule Skeleton.Phoenix.ControllerTest do
     test "when it's not valid", context do
       conn = UserController.update(context.conn)
       assert conn.halted
-      assert conn.status == 403
+      assert conn.status == 401
     end
   end
 end
